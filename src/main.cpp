@@ -19,8 +19,6 @@ using std::vector;
 
 string read_command();
 
-// TA said that providing source code of tokenizer is allowed.
-// Therefore, this tokenizer may appear in others' final project.
 void split_string(vector<string>& target, const string& str, char delim = ' ', bool append = false);
 
 void echo(const vector<string>& tokens);
