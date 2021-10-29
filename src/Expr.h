@@ -15,14 +15,14 @@ class Expr;
 class expr_node
 {
 public:
-	expr_node();
-	virtual ~expr_node() {}
-	virtual LargeNumber eval() const = 0;
+    expr_node();
+    virtual ~expr_node() {}
+    virtual LargeNumber eval() const = 0;
     virtual void subst(const string&, const string&) = 0;
     virtual string getString() const = 0;
 
 protected:
-	int m_use_count;
+    int m_use_count;
 
 friend class Expr;
 };
@@ -45,31 +45,31 @@ public:
 protected:
     expr_node *m_ptr;
 
-	void unhook();
+    void unhook();
 };
 
 class uni_node: public expr_node
 {
 private:
-	string m_value;
+    string m_value;
 public:
-	explicit uni_node(const string& value);
-	~uni_node();
-	LargeNumber eval() const;
-	void subst(const string& from, const string& to);
+    explicit uni_node(const string& value);
+    ~uni_node();
+    LargeNumber eval() const;
+    void subst(const string& from, const string& to);
     string getString() const;
 };
 
 class binary_node: public expr_node
 {
 private:
-	string m_op;
-	Expr m_lchild;
-	Expr m_rchild;
+    string m_op;
+    Expr m_lchild;
+    Expr m_rchild;
 public:
-	binary_node(const string& op, const Expr& lchild, const Expr& rchild);
-	~binary_node(); // should also delete its subtree recursively
-	LargeNumber eval() const;
-	void subst(const string& from, const string& to);
-	string getString() const;
+    binary_node(const string& op, const Expr& lchild, const Expr& rchild);
+    ~binary_node(); // should also delete its subtree recursively
+    LargeNumber eval() const;
+    void subst(const string& from, const string& to);
+    string getString() const;
 };
